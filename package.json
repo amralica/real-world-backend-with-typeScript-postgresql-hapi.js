@@ -15,7 +15,7 @@
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
-    "@prisma/cli": "^2.10.1",
+    "@prisma/cli": "^2.10.2",
     "@types/hapi-pino": "^8.0.1",
     "@types/hapi__hapi": "^20.0.1",
     "@types/jest": "^26.0.9",
