@@ -1,6 +1,5 @@
 import Hapi from '@hapi/hapi'
 import Joi, { options } from '@hapi/joi'
-
 // plugin to instantiate Prisma Client
 const usersPlugin = {
   name: 'app/users',

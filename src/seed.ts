@@ -1,3 +1,6 @@
+
+
+
 import { PrismaClient } from '@prisma/client'
 import { add, max } from 'date-fns'
 
@@ -30,6 +33,45 @@ async function main() {
     },
   })
   console.log(grace)
+
+  const course = await prisma.course.create({
+  data: {
+    name: 'CRUD with Prisma',
+    tests: {
+      create: [
+        {
+          date: weekFromNow,
+          name: 'First test',
+        },
+        {
+          date: twoWeekFromNow,
+          name: 'Second test',
+        },
+        {
+          date: monthFromNow,
+          name: 'Final exam',
+        },
+      ],
+    },
+    members: {
+      create: {
+        role: 'TEACHER',
+        user: {
+          connect: {
+            email: grace.email,
+          },
+        },
+      },
+    },
+  },
+  include: {
+    tests: true,
+    members: {
+      include: {user: true},
+    }
+  },
+})
+console.log(course)
 }
 
 main()
@@ -38,5 +80,5 @@ main()
     process.exit(1)
   })
   .finally(async () => {
-    await prisma.disconnect()
+    await prisma.$disconnect()
   })
